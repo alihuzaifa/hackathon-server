@@ -9,14 +9,14 @@ const AddNewCourse = async (req, res) => {
     const myCloud = await cloudinary.v2.uploader.upload(fileUri?.content);
     if (!expiryDate)
       return res.status(401).json({ message: "Data is missing" });
-    const newOffer = {
+    const newCourse = {
       image: {
         public_id: myCloud?.public_id,
         url: myCloud?.url,
       },
       expiryDate,
     };
-    await Offer.create(newOffer);
+    await NewCourse.create(newCourse);
     return res.status(200).json({ message: "Course Added Successfully" });
   } catch (error) {
     return res.status(500).json({ message: error?.message });
