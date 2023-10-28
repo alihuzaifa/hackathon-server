@@ -37,15 +37,15 @@ const getCourses = async (req, res) => {
     return res.status(500).json({ message: error?.message });
   }
 };
-const deleteDish = async (req, res) => {
+const deleteCourse = async (req, res) => {
   try {
     const { _id } = req?.body;
-    const findDish = await Dish.findOne({ _id });
-    const cloudinaryId = findDish?.image?.public_id;
+    const findCourse = await Course.findOne({ _id });
+    const cloudinaryId = findCourse?.image?.public_id;
     const { result } = await cloudinary.uploader.destroy(cloudinaryId);
     if (result == "ok") {
       await Dish.deleteOne({ _id });
-      return res.status(200).json({ message: "Dish Deleted Successfully" });
+      return res.status(200).json({ message: "Course Deleted Successfully" });
     }
   } catch (error) {
     return res.status(500).json({ message: error?.message });
@@ -119,4 +119,4 @@ const AllCategories = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-export { CreateCourse, getCourses, deleteDish, UpdateDish, AllCategories };
+export { CreateCourse, getCourses, deleteCourse, UpdateDish, AllCategories };

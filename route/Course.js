@@ -3,14 +3,14 @@ import {
     AllCategories,
     CreateCourse,
     UpdateDish,
-    deleteDish,
+    deleteCourse,
     getCourses,
 } from "../controllers/Course.js";
 import singleUpload from "../middleware/Multer.js";
 const router = express.Router();
 router.post("/createCourse", singleUpload, CreateCourse);
 router.get("/getCourses", getCourses);
-router.delete("/deleteDish", deleteDish);
+router.delete("/deleteCourse", deleteCourse);
 router.put("/updateDish", (req, res, next) => {
     if (req?.body?.isUpload == false) {
         next()
