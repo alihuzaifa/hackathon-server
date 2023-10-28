@@ -1,7 +1,7 @@
 import getDataUri from "../middleware/DataUri.js";
 import Offer from "../model/NewCourses.js";
 import cloudinary from "cloudinary";
-const AddOffers = async (req, res) => {
+const AddNewCourse = async (req, res) => {
     try {
         const file = req?.file;
         const { expiryDate } = req?.body;
@@ -47,4 +47,4 @@ const GetAllOffers = async (req, res) => {
         return res.status(500).json({ message: error?.message });
     }
 };
-export { AddOffers, DeleteOffer, GetAllOffers };
+export { AddNewCourse, DeleteOffer, GetAllOffers };
