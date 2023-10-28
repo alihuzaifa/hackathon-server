@@ -10,8 +10,6 @@ import cloudinary from "cloudinary";
 import userRoutes from "./route/User.js";
 import NewCourses from "./route/NewCourses.js";
 import courseRoutes from "./route/Course.js";
-import feedbackRoutes from "./route/Feedback.js";
-import cartRoute from "./route/Cart.js";
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
@@ -33,8 +31,6 @@ app.use(cookieParser());
 app.use("/user", userRoutes);
 app.use("/new-courses", NewCourses);
 app.use("/course", courseRoutes);
-// app.use("/feedback", feedbackRoutes);
-// app.use("/cart", cartRoute);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose

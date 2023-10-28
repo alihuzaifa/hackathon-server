@@ -1,9 +1,4 @@
 import User from "../model/User.js";
-import Dish from "../model/Course.js";
-import Offer from "../model/NewCourses.js";
-import Feedback from "../model/Feedback.js";
-import Order from "../model/Cart.js";
-import Delivered from "../model/CompleteOrder.js";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import generateToken from "../util/GenerateToken.js";
@@ -123,28 +118,11 @@ const UpdatePass = async (req, res) => {
         res.status(500).json({ message: error?.message });
     }
 };
-const getDashboardData = async (req, res) => {
-    try {
-        const allUserLength = await User.find({ role: "user" }).select("-password");
-        const allAdmin = await User.find({ role: "admin" }).select("-password");
-        const allDish = await Dish.find({});
-        const allOffer = await Offer.find({});
-        const allFeedback = await Feedback.find({});
-        const allOrder = await Order.find({});
-        const allDelivered = await Delivered.find({});
-        const dishArray = []?.concat(...allOrder?.map(item => item?.dish));
-        const completeOrder = []?.concat(...allDelivered?.map(item => item?.complete));
-        return res.status(200).json({ user: allUserLength?.length, dish: allDish?.length, offer: allOffer?.length, admin: allAdmin?.length, feedback: allFeedback?.length, order: dishArray?.length, deliver: completeOrder });
-    } catch (error) {
-        res.status(500).json({ message: error?.message });
-    }
-};
 export {
     Login,
     Signup,
     GetAllUser,
     GetAllAdmin,
-    getDashboardData,
     UpdatePass,
     checkEmail
 };
