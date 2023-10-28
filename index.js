@@ -8,7 +8,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import userRoutes from './route/User.js'
-import offerRoutes from './route/NewCourses.js'
+import NewCourses from './route/NewCourses.js'
 import dishRoutes from './route/Dish.js'
 import feedbackRoutes from './route/Feedback.js'
 import cartRoute from './route/Cart.js'
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 app.use(cookieParser());
 /* ROUTES */
 app.use("/user", userRoutes);
-app.use("/new-courses", offerRoutes);
+app.use("/new-courses", NewCourses);
 // app.use("/dish", dishRoutes);
 // app.use("/feedback", feedbackRoutes);
 // app.use("/cart", cartRoute);
