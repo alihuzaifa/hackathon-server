@@ -41,10 +41,12 @@ const deleteCourse = async (req, res) => {
   try {
     const { _id } = req?.body;
     const findCourse = await Course.findOne({ _id });
+    console.log("🚀 findCourse:", findCourse)
     const cloudinaryId = findCourse?.image?.public_id;
     const { result } = await cloudinary.uploader.destroy(cloudinaryId);
     if (result == "ok") {
       await Course.deleteOne({ _id });
+      console.log("Successfull")
       return res.status(200).json({ message: "Course Deleted Successfully" });
     }
   } catch (error) {
