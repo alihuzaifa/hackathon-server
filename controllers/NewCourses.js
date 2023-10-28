@@ -22,7 +22,7 @@ const AddNewCourse = async (req, res) => {
         return res.status(500).json({ message: error?.message });
     }
 };
-const DeleteOffer = async (req, res) => {
+const DeleteCourse = async (req, res) => {
     try {
         const { _id } = req?.body;
         if (!_id) return res.status(401).json({ message: "Data is missing" });
@@ -47,4 +47,4 @@ const GetAllCourses = async (req, res) => {
         return res.status(500).json({ message: error?.message });
     }
 };
-export { AddNewCourse, DeleteOffer, GetAllCourses };
+export { AddNewCourse, DeleteCourse, GetAllCourses };
