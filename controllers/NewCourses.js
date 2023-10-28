@@ -17,7 +17,7 @@ const AddNewCourse = async (req, res) => {
             expiryDate,
         };
         await Offer.create(newOffer);
-        return res.status(200).json({ message: "Offer Added Successfully" });
+        return res.status(200).json({ message: "Course Added Successfully" });
     } catch (error) {
         return res.status(500).json({ message: error?.message });
     }
