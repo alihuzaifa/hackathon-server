@@ -1,14 +1,14 @@
 import express from "express";
 import {
     AllCategories,
-    CreateDish,
+    CreateCourse,
     UpdateDish,
     deleteDish,
     getDish,
-} from "../controllers/Dish.js";
+} from "../controllers/Course.js";
 import singleUpload from "../middleware/Multer.js";
 const router = express.Router();
-router.post("/createDish", singleUpload, CreateDish);
+router.post("/createCourse", singleUpload, CreateCourse);
 router.get("/getDishes", getDish);
 router.delete("/deleteDish", deleteDish);
 router.put("/updateDish", (req, res, next) => {

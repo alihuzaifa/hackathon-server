@@ -1,5 +1,5 @@
 import User from "../model/User.js";
-import Dish from "../model/Dish.js";
+import Dish from "../model/Course.js";
 import Offer from "../model/NewCourses.js";
 import Feedback from "../model/Feedback.js";
 import Order from "../model/Cart.js";
