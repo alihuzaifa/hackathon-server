@@ -119,7 +119,7 @@ const updateCourse = async (req, res) => {
 };
 const AllCategories = async (req, res) => {
   try {
-    const categories = await Course.distinct("category");
+    const categories = await Course.distinct("courseCategory");
     if (categories) {
       return res.status(200).json(categories);
     }
