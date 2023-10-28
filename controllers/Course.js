@@ -91,7 +91,7 @@ const updateCourse = async (req, res) => {
       ) {
         return res.status(401).json({ message: "Data is missing" });
       }
-      const dindCourseById = await Dish.findOne({ _id });
+      const dindCourseById = await Course.findOne({ _id });
       const public_id = dindCourseById?.image?.public_id;
       const { result } = await cloudinary.uploader.destroy(public_id);
       if (result == "ok") {
