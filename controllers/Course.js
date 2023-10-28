@@ -1,5 +1,5 @@
 import getDataUri from "../middleware/DataUri.js";
-import Dish from "../model/Course.js";
+import Course from "../model/Course.js";
 import cloudinary from "cloudinary";
 const CreateCourse = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const CreateCourse = async (req, res) => {
       req?.body;
     if (!courseName || !courseCategory || !discription || !price || !discount)
       return res.status(401).json({ message: "Data is missing" });
-    const newDish = {
+    const course = {
       image: {
         public_id: myCloud?.public_id,
         url: myCloud?.url,
@@ -21,17 +21,17 @@ const CreateCourse = async (req, res) => {
       price,
       discount,
     };
-    await Dish.create(newDish);
-    return res.status(200).json({ message: "Dish Added Successfully" });
+    await Course.create(course);
+    return res.status(200).json({ message: "Course Added Successfully" });
   } catch (error) {
     return res.status(500).json({ message: error?.message });
   }
 };
-const getDish = async (req, res) => {
+const getCourses = async (req, res) => {
   try {
-    const getAllDishes = await Dish.find({});
-    if (getAllDishes) {
-      return res.status(200).json(getAllDishes);
+    const getAllCourses = await Course.find({});
+    if (getAllCourses) {
+      return res.status(200).json(getAllCourses);
     }
   } catch (error) {
     return res.status(500).json({ message: error?.message });
@@ -119,4 +119,4 @@ const AllCategories = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-export { CreateCourse, getDish, deleteDish, UpdateDish, AllCategories };
+export { CreateCourse, getCourses, deleteDish, UpdateDish, AllCategories };
