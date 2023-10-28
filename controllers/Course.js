@@ -41,38 +41,40 @@ const deleteCourse = async (req, res) => {
   try {
     const { _id } = req?.body;
     const findCourse = await Course.findOne({ _id });
-    console.log("🚀 findCourse:", findCourse)
     const cloudinaryId = findCourse?.image?.public_id;
     const { result } = await cloudinary.uploader.destroy(cloudinaryId);
     if (result == "ok") {
       await Course.deleteOne({ _id });
-      console.log("Successfull")
       return res.status(200).json({ message: "Course Deleted Successfully" });
     }
   } catch (error) {
     return res.status(500).json({ message: error?.message });
   }
 };
-const UpdateDish = async (req, res) => {
+const updateCourse = async (req, res) => {
   if (req?.body?.isUpload == false) {
     try {
-      const { name, category, discription, price, discount, _id } = req?.body;
+      const { courseName, courseCategory, discription, price, discount, _id } =
+        req?.body;
 
-      if ((!name || !category || !discription || !price || !discount, !_id)) {
+      if (
+        (!courseName || !courseCategory || !discription || !price || !discount,
+        !_id)
+      ) {
         return res.status(401).json({ message: "Data is missing" });
       }
-      await Dish.findByIdAndUpdate(
+      await Course.findByIdAndUpdate(
         _id,
         {
-          name,
-          category,
+          courseName,
+          courseCategory,
           discription,
           price,
           discount,
         },
         { new: true }
       ).exec();
-      return res.status(200).json({ message: "Dish update successfully" });
+      return res.status(200).json({ message: "Course update successfully" });
     } catch (error) {
       return res.status(500).json({ message: error?.message });
     }
@@ -81,19 +83,23 @@ const UpdateDish = async (req, res) => {
       const file = req?.file;
       const fileUri = getDataUri(file);
       const myCloud = await cloudinary.v2.uploader.upload(fileUri?.content);
-      const { name, category, discription, price, discount, _id } = req?.body;
-      if ((!name || !category || !discription || !price || !discount, !_id)) {
+      const { courseName, courseCategory, discription, price, discount, _id } =
+        req?.body;
+      if (
+        (!courseName || !courseCategory || !discription || !price || !discount,
+        !_id)
+      ) {
         return res.status(401).json({ message: "Data is missing" });
       }
-      const findDishId = await Dish.findOne({ _id });
-      const public_id = findDishId?.image?.public_id;
+      const dindCourseById = await Dish.findOne({ _id });
+      const public_id = dindCourseById?.image?.public_id;
       const { result } = await cloudinary.uploader.destroy(public_id);
       if (result == "ok") {
-        await Dish.findByIdAndUpdate(
+        await Course.findByIdAndUpdate(
           _id,
           {
-            name,
-            category,
+            courseName,
+            courseCategory,
             discription,
             price,
             discount,
@@ -104,7 +110,7 @@ const UpdateDish = async (req, res) => {
           },
           { new: true }
         ).exec();
-        return res.status(200).json({ message: "Dish update successfully" });
+        return res.status(200).json({ message: "Course update successfully" });
       }
     } catch (error) {
       return res.status(500).json({ message: error?.message });
@@ -121,4 +127,4 @@ const AllCategories = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-export { CreateCourse, getCourses, deleteCourse, UpdateDish, AllCategories };
+export { CreateCourse, getCourses, deleteCourse, updateCourse, AllCategories };
