@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import userRoutes from "./route/User.js";
 import NewCourses from "./route/NewCourses.js";
+import feedbackRoutes from './route/Feedback.js'
 import courseRoutes from "./route/Course.js";
 /* CONFIGURATION */
 dotenv.config();
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use("/user", userRoutes);
 app.use("/new-courses", NewCourses);
 app.use("/course", courseRoutes);
+app.use("/feedback", feedbackRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose

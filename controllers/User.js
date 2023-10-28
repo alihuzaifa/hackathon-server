@@ -12,7 +12,6 @@ const Login = async (req, res) => {
       });
     }
     const LoginUser = await User.findOne({ email });
-    console.log("LoginUser:", LoginUser);
     if (LoginUser) {
       const comparePassword = await bcrypt.compare(
         password,
@@ -40,7 +39,6 @@ const Login = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("🚀error:", error)
     res.status(500).json({ message: error?.message });
   }
 };
