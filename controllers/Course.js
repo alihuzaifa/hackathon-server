@@ -119,7 +119,7 @@ const updateCourse = async (req, res) => {
 };
 const AllCategories = async (req, res) => {
   try {
-    const categories = await Dish.distinct("category");
+    const categories = await Course.distinct("category");
     if (categories) {
       return res.status(200).json(categories);
     }
