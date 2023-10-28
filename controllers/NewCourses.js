@@ -37,14 +37,14 @@ const DeleteOffer = async (req, res) => {
         return res.status(500).json({ message: error?.message });
     }
 };
-const GetAllOffers = async (req, res) => {
+const GetAllCourses = async (req, res) => {
     try {
-        const AllOffers = await Offer.find({});
-        if (AllOffers) {
-            return res.status(200).json(AllOffers);
+        const AllCourses = await Offer.find({});
+        if (AllCourses) {
+            return res.status(200).json(AllCourses);
         }
     } catch (error) {
         return res.status(500).json({ message: error?.message });
     }
 };
-export { AddNewCourse, DeleteOffer, GetAllOffers };
+export { AddNewCourse, DeleteOffer, GetAllCourses };
