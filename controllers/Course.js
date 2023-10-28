@@ -44,7 +44,7 @@ const deleteCourse = async (req, res) => {
     const cloudinaryId = findCourse?.image?.public_id;
     const { result } = await cloudinary.uploader.destroy(cloudinaryId);
     if (result == "ok") {
-      await Dish.deleteOne({ _id });
+      await Course.deleteOne({ _id });
       return res.status(200).json({ message: "Course Deleted Successfully" });
     }
   } catch (error) {
